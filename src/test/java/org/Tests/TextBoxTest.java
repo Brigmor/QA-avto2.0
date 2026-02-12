@@ -1,35 +1,27 @@
 package org.Tests;
 
-import org.BasePage;
+import org.BaseTest;
 import org.junit.jupiter.api.Test;
 import org.Page.TextBoxPage;
-
+import static org.TestData.TestDataTextBox.*;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 
-public class TextBoxTest extends BasePage {
+public class TextBoxTest extends BaseTest {
     @Test
     void test1(){
-        //Создание экземпляра класса
-        TextBoxPage page = new TextBoxPage();
         //Открыть страницу сайта
         openPage("/text-box");
+        //Создание экземпляра класса
+        new TextBoxPage()
         //Проверить элементы формы заполнения
-        page.pageCheckEmptyFormElements();
-        //Заполнить поля формы
-        page.pageValueTextInput("Alex ","alex@gmail.ru","Vologda","Arhangelsk");
-        //
-        page.pageClkickSumbit();
-        //=========================Проверки введенной информации в поле======================================================
-        //Проверить юзернейм
-        page.pageCheckTextUserName();
-        //Проверить емаил
-        page.pageCheckTextEmail();
-        //Проверить куррент адрес
-        page.pageCheckCurrentAddress();
-        //Проверить перманентный адрес
-        page.pageCheckPermanentAddress();
+                .CheckEmptyFormElements()
+                .ValueTextInput(VALID_NAME, VALID_EMAIL, VALID_CURRENT_ADDRESS, VALID_PERMANENT_ADDRESS)
+                .ClickSumbit()
+                .verifyUserName(VALID_NAME)
+                .verifyUserEmail(VALID_EMAIL)
+                .verifyCurrentAddress(VALID_CURRENT_ADDRESS)
+                .verifyPermanentAddress(VALID_PERMANENT_ADDRESS);
 
-        //sleep(5000);
+
     }
 }

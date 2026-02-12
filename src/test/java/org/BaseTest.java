@@ -5,12 +5,11 @@ import com.codeborne.selenide.Selenide;
 //конфигурации с junit
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.open;
 //===================Базовые класс для всех тестов 'наследуется'====================
 
-public class BasePage {
+public abstract class  BaseTest {
     protected static final String BASE_URL = "https://demoqa.com";
     @BeforeAll
     public static void configureBrowser(){

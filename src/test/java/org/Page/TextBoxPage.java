@@ -18,42 +18,57 @@ public class TextBoxPage {
 
    //==============================Методы======================================================
     //Проверка элементов формы
-    public void pageCheckEmptyFormElements(){
+    public TextBoxPage CheckEmptyFormElements(){
         pageTitle.shouldBe(Condition.visible);
         pageUserName.shouldBe(Condition.visible);
         pageUserEmail.shouldBe(Condition.visible);
         pageCurrentAddress.shouldBe(Condition.visible);
         pagePermanentAddress.shouldBe(Condition.visible);
         pageSubmit.shouldBe(Condition.visible);
+        return this;
     }
     //Ввод значений на форму
-    public void pageValueTextInput(String UserName,String userEmail,String currentAddress,String permanentAddress){
+    public  TextBoxPage ValueTextInput(String UserName,String userEmail,String currentAddress,String permanentAddress){
         pageUserName.setValue(UserName);
         pageUserEmail.setValue(userEmail);
         pageCurrentAddress.setValue(currentAddress);
         pagePermanentAddress.setValue(permanentAddress);
 
+        pageUserName.shouldHave(Condition.value(UserName));
+        pageUserEmail.shouldHave(Condition.value(userEmail));
+        pageCurrentAddress.shouldHave(Condition.value(currentAddress));
+        pagePermanentAddress.shouldHave(Condition.value(permanentAddress));
+        return this;
+
+
     }
     //Нажать на кнопку Sumbit
-    public void pageClkickSumbit(){
+    public TextBoxPage ClickSumbit(){
         pageSubmit.click();
+        return this;
     }
-    //Проверить имя юзера
-    public void pageCheckTextUserName(){
-        pageUserName.shouldHave(Condition.value("Alex"));
+
+
+    public TextBoxPage verifyUserName(String expectedName) {
+        pageUserName.shouldHave(Condition.value(expectedName));
+        return this;
     }
-    //Проверить емаил
-    public void pageCheckTextEmail(){
-        pageUserEmail.shouldHave(Condition.value("alex@gmail.ru"));
+
+    public TextBoxPage verifyUserEmail(String expectedEmail) {
+        pageUserEmail.shouldHave(Condition.value(expectedEmail));
+        return this;
     }
-    //Проверить что курент адрес ввелся правильно
-    public void pageCheckCurrentAddress(){
-        pageCurrentAddress.shouldHave(Condition.value("Vologda"));
+
+    public TextBoxPage verifyCurrentAddress(String expectedAddress) {
+        pageCurrentAddress.shouldHave(Condition.value(expectedAddress));
+        return this;
     }
-    //Проверить что перманетный адрес ввелся правильно
-    public void pageCheckPermanentAddress(){
-        pagePermanentAddress.shouldHave(Condition.value("Arhangelsk"));
+
+    public TextBoxPage verifyPermanentAddress(String expectedAddress) {
+        pagePermanentAddress.shouldHave(Condition.value(expectedAddress));
+        return this;
     }
+
 
 
 
